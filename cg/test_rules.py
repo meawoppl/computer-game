@@ -1,7 +1,7 @@
 import numpy as np
 
 from cg.vector import Vector, random
-from cg.server import rules
+from cg import rules
 
 
 def test_nullPlayLegality():
