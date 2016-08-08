@@ -72,3 +72,10 @@ def test_vector_copy():
     assert r1.sum() == r2.sum()
     assert r1.size == r2.size
     assert r1 == r2
+
+
+def test_reverse():
+    r = random(100, 0.5)
+    assert r.sum() == r.reversed().sum()
+
+    assert r.reversed().reversed() == r

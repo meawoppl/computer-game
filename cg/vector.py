@@ -27,6 +27,9 @@ class Vector:
     def __getattr__(self, attr):
         return getattr(self._v, attr)
 
+    def reversed(self):
+        return Vector(self._v[::-1])
+
     def run(self):
         length = 0
         mx = 0
@@ -38,9 +41,6 @@ class Vector:
                 length = 0
 
         return mx
-
-    def compliment(self):
-        return Vector(1 - self._v)
 
     def copy(self):
         return Vector(self._v.copy())
