@@ -1,5 +1,5 @@
 import numpy as np
-from cg.vector import Vector, random, zeros, ones
+from cg.vector import Vector, random, zeros, ones, randomEven
 
 
 v1 = random(100, 0.5)
@@ -63,6 +63,11 @@ def test_random():
 
         close = np.allclose(r.mean(), p, rtol=0.001, atol=0.001)
         assert close, "Test for %f failed. %f vs %f" % (p, r.mean(), p)
+
+
+def test_randomEven():
+    re = randomEven(100)
+    assert re.sum() == 50
 
 
 def test_vector_copy():

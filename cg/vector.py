@@ -30,6 +30,9 @@ class Vector:
     def reversed(self):
         return Vector(self._v[::-1])
 
+    def asarray(self):
+        return self._v.copy()
+
     def run(self):
         length = 0
         mx = 0
@@ -45,6 +48,9 @@ class Vector:
     def copy(self):
         return Vector(self._v.copy())
 
+    def __str__(self):
+        return "".join("%d" % e for e in self._v)
+
 
 def random(length, probability):
     """Generate a Vector with length and binary probability given."""
@@ -58,3 +64,10 @@ def ones(length):
 
 def zeros(length):
     return Vector(np.zeros((length)))
+
+
+def randomEven(length):
+    assert (length % 2) == 0, "Invalid for uneven length"
+    v = np.zeros(length)
+    v[0: length // 2] = 1
+    return Vector(np.random.permutation(v))
