@@ -1,5 +1,5 @@
 import numpy as np
-from cg.vector import Vector, random, zeros, ones, randomEven
+from cg.vector import Vector, random, zeros, ones, randomEven, evenSplit
 
 
 v1 = random(100, 0.5)
@@ -65,9 +65,15 @@ def test_random():
         assert close, "Test for %f failed. %f vs %f" % (p, r.mean(), p)
 
 
-def test_randomEven():
+def test_random_even():
     re = randomEven(100)
     assert re.sum() == 50
+
+
+def test_even_split():
+    rs = evenSplit(100)
+    assert rs.sum() == 50
+    assert rs.run() == 50
 
 
 def test_vector_copy():

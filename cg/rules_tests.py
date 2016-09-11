@@ -5,6 +5,7 @@ from cg import rules
 
 
 def test_nullPlayLegality():
+    """Make sure null play is allowed"""
     for _n in range(50):
         stateVector = random(50, 0.5)
 
@@ -14,6 +15,7 @@ def test_nullPlayLegality():
 
 
 def test_singlePlay():
+    """Make sure each player will play"""
     playSize = 50
     for n in range(playSize):
         s = np.zeros(playSize)
@@ -28,9 +30,7 @@ def test_singlePlay():
 
 
 def test_tiny_game_complete():
-    """
-    Sanity check all the legal moves of a small game
-    """
+    """Sanity check all the legal moves of a small game"""
 
     beginState = Vector((0, 1))
     noMove = Vector((0, 0))

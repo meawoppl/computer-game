@@ -9,19 +9,21 @@ def test_findPlayers():
 
 def test_playerSignatures():
     """Check all player methods."""
-    for player in findPlayers():
+    for playerName, player in findPlayers().items():
         assert hasattr(player, "setup")
         assert hasattr(player, "play")
 
 
 def test_initAllPlayers():
-    for player in findPlayers():
+    """Make sure init passes for all players"""
+    for playerName, player in findPlayers().items():
         player()
 
 
 def test_getNullMove():
+    """Make sure players know at least 1 rule."""
     nullVec = zeros(10)
-    for player in findPlayers():
+    for playerName, player in findPlayers().items():
         p = player()
         p.setup()
         print("Testing Player:" + p.getName())
@@ -39,9 +41,10 @@ def test_getNullMove():
 
 
 def test_getRandomResponse():
+    """Give players a random feild and see what they do"""
     nullVec = zeros(1000)
     randomState = random(1000, 0.5)
-    for player in findPlayers():
+    for playername, player in findPlayers().items():
         p = player()
         p.setup()
         print("Testing Player:" + p.getName())
