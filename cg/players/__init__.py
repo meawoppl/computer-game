@@ -29,4 +29,4 @@ def findPlayers():
                 continue
             players[objName] = obj
 
-    return [players[pName] for pName in sorted(players.keys())]
+    return players

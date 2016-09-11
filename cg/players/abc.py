@@ -9,14 +9,14 @@ class AbstractPlayer:
         self.opponent = None
         self.move = 0
         self.state = None
-        self.myLastMove = None
-        self.theirLastMove = None
+        self.theirLast = None
 
     def getName(self):
         name = self.__class__.__name__
         s = hashlib.sha1()
         s.update(self.setup.__code__.co_code)
         s.update(self.play.__code__.co_code)
+        s.update(self.teardown.__code__.co_code)
         return name + "-" + s.hexdigest()[::4]
 
     def moveCount(self):
@@ -28,7 +28,6 @@ class AbstractPlayer:
         This is the time that the player can do static setup.
         This time is not clocked, and occurs before gameplay can begin.
         """
-        pass
 
     def play(self):
         """This method defines the player."""
