@@ -71,3 +71,10 @@ def randomEven(length):
     v = np.zeros(length)
     v[0: length // 2] = 1
     return Vector(np.random.permutation(v))
+
+
+def evenSplit(length):
+    assert (length % 2) == 0, "Invalid for uneven length"
+    v = np.zeros(length)
+    v[0: length // 2] = 1
+    return Vector(v)
