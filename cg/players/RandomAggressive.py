@@ -4,9 +4,7 @@ from cg.players.abc import AbstractPlayer
 
 
 class RandomAggressive(AbstractPlayer):
-    """This player is basically a goldfish.
-    It never makes a move and accepts fate
-    as it comes."""
+    """This player makes moves to expand its own territory."""
     def play(self):
         s = (-self.state).asarray()
         nz = np.nonzero(s)
