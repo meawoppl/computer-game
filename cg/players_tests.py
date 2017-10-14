@@ -9,50 +9,50 @@ def test_findPlayers():
 
 def test_playerSignatures():
     """Check all player methods."""
-    for playerName, player in findPlayers().items():
+    for player_name, player in findPlayers().items():
         assert hasattr(player, "setup")
         assert hasattr(player, "play")
 
 
 def test_initAllPlayers():
     """Make sure init passes for all players"""
-    for playerName, player in findPlayers().items():
+    for player_name, player in findPlayers().items():
         player()
 
 
 def test_getNullMove():
     """Make sure players know at least 1 rule."""
-    nullVec = zeros(10)
-    for playerName, player in findPlayers().items():
+    null_vec = zeros(10)
+    for player_name, player in findPlayers().items():
         p = player()
         p.setup()
         print("Testing Player:" + p.getName())
         p.opponent = "YourWorstEnemy"
         p.move = 0
-        p.myLastMove = nullVec
-        p.theirLastMove = nullVec
-        p.state = nullVec
+        p.myLastMove = null_vec
+        p.theirLastMove = null_vec
+        p.state = null_vec
 
         # All players should recognise this situation as a loss and return a zero vector
         r = p.play()
-        assert r == nullVec, str(r)
+        assert r == null_vec, str(r)
 
         p.teardown()
 
 
 def test_getRandomResponse():
     """Give players a random feild and see what they do"""
-    nullVec = zeros(1000)
-    randomState = random(1000, 0.5)
+    null_vec = zeros(1000)
+    random_state = random(1000, 0.5)
     for playername, player in findPlayers().items():
         p = player()
         p.setup()
         print("Testing Player:" + p.getName())
         p.opponent = "YourWorstEnemy"
         p.move = 0
-        p.myLastMove = nullVec
-        p.theirLastMove = nullVec
-        p.state = randomState
+        p.myLastMove = null_vec
+        p.theirLastMove = null_vec
+        p.state = random_state
 
         # players shouldnt crash, and return a  Vector
         r = p.play()

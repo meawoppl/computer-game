@@ -1,33 +1,29 @@
 syntax = "proto3";
 
-message StartGame {
-  string name = 1;
-  string api_key = 2;
+
+message BooleanVector {
+	repeated bool bits = 1;
 }
 
-message GameMeta {
+
+message GameStatus {
 	string game_id = 1;
 	string opponent = 2;
 	uint32 game_size = 3;
-	uint32 ms_per_round = 4;
+	uint32 ms_per_round = 4;	
+	uint32 round = 5;
+
+	BooleanVector opponent_last = 6;
+	BooleanVector your_last = 7;
+	BooleanVector state = 8;
 }
 
-message GameMask {
-	uint32 game_size = 1;
-	repeated bool values = 2;
+message MakeMove {
+	string player_id = 1;
+	uint32 round = 2;
+	BooleanVector move = 3;
 }
 
-message GameMove {
-	uint32 move_number = 1;
-	GameMask mask = 2;
-}
-
-message PlayerMsg {
-	StartGame start = 1;
-	repeated GameMove moves = 2;
-}
-
-message ServerMsg {
-	GameMeta meta = 1;
-	repeated GameMove moves = 2;
+service GameServer {
+	rpc PlayGame (stream MakeMove) returns (stream GameStatus) {}
 }
