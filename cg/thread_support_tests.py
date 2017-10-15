@@ -6,20 +6,19 @@ import nose.tools
 import cg.thread_support
 
 
-class TPSubclass(cg.thread_support.ThreadPairer):
-    def get_instance(self):
-        return str(uuid.uuid4())
+def get_uuid_pairer():
+    return cg.thread_support.ThreadPairer(lambda: str(uuid.uuid4()))
 
 
 def test_thread_pairer_timeout():
-    tp = TPSubclass()
+    tp = get_uuid_pairer()
 
     with nose.tools.assert_raises(TimeoutError):
-        tp.get_paired_instance(1000)
+        tp.get_paired_instance(100)
 
 
 def test_thread_pairer_pair():
-    tp = TPSubclass()
+    tp = get_uuid_pairer()
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as tpe:
         f1 = tpe.submit(tp.get_paired_instance)
@@ -37,7 +36,7 @@ def test_thread_pairer_pair():
 
 
 def test_thread_pair_pairer_hard():
-    tp = TPSubclass()
+    tp = get_uuid_pairer()
 
     futs = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as tpe:
